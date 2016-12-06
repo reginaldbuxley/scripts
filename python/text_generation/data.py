@@ -7,7 +7,7 @@ from datetime import datetime
 
 r = praw.Reddit(user_agent='PythonApp')
 
-subreddit_ = 'the_donald'
+subreddit_ = 'something'
 submissions = r.get_subreddit(subreddit_).get_new(limit=5000)
 text = ""
 counter = 1

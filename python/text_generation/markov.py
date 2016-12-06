@@ -10,11 +10,11 @@ from slackclient import SlackClient
 #tool = language_check.LanguageTool('en-US')
 
 # setup slack
-SLACK_TOKEN = "xoxb-34581920422-OHJi8D78r1TuWYzitFS7YkYH"
+SLACK_TOKEN = "xXtokenXx"
 sc = SlackClient(SLACK_TOKEN)
 
 
-subreddit = 'the_donald'
+subreddit = 'something'
 sent_gen = 3
 
 
