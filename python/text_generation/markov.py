@@ -27,6 +27,8 @@ submissions = r.get_subreddit(subreddit).get_hot(limit=15)
 text = ""
 counter = 0
 
+
+
 print("Starting comment scrump for " + str(subreddit))
 #print (str(len(submissions)) + " submissions.")
 
