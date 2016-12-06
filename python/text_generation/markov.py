@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#this finally came in handy!
+
 import warnings
 import sys
 import re
@@ -14,13 +17,13 @@ SLACK_TOKEN = "xXtokenXx"
 sc = SlackClient(SLACK_TOKEN)
 
 
-subreddit = 'something'
+subreddit = 'Pizza'
 sent_gen = 3
 
 
 
 r = praw.Reddit(user_agent='comment grabber')
-submissions = r.get_subreddit(subreddit).get_new(limit=20)
+submissions = r.get_subreddit(subreddit).get_hot(limit=15)
 text = ""
 counter = 0
 
@@ -141,4 +144,3 @@ print(end_result)
 
 #del r
 warnings.simplefilter("ignore", ResourceWarning)
-
