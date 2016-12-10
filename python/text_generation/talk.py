@@ -1,4 +1,3 @@
-from os.path import expanduser
 import random
 import pronouncing
 import markovify
@@ -73,79 +72,4 @@ def getSuessSentence(text_model, length):
     print()              
     sent2 = re.sub('___BEGIN__ ','',sent2)
     return(str(sent1)+" "+str(sent2))
-
-
-    #return (sent1 + " " + sent2)
-
-
-    
-################
-print ("HERE WE GO!")
-
-home = expanduser("~")
-print (home)
-
-text1 = ""
-text2 = ""
-text3 = ""
-
-path1 = ""
-path2 = ""
-path3 = ""
-
-path1 = home + "/text_data/oz.txt"
-text1 = text1 + readFile(path1)    
-
-path2 = home + "/text_data/alice.txt"
-text2 = text2 + readFile(path2)
-
-path3 = home + "/text_data/threepigs.txt"
-text3 = text3 + readFile(path3)
-
-print (len(text1))
-print (len(text2))
-print (len(text3))
-
-text_model1 = markovify.Text(text1,state_size=1)
-text_model2 = markovify.Text(text2,state_size=1)
-text_model3 = markovify.Text(text3,state_size=1)
-
-    #combined text models do not seem to work correctly
-    #throws : unorderable types: int() < NoneType()
-#text_model = markovify.combine([ model_a, model_b ], [ 1.5, 1 ])
-#text_model = markovify.combine([ text_model1, text_model2],[1,2])
-
-text_model = markovify.Text(text1+text2+text3, state_size=3)
-sent1 = None 
-sent2 = None
-print ("++")
-
-sSent = None
-
-for i in range(3):
-    while sSent is None:
-        sSent = getSuessSentence(text_model,80)
-    print (sSent)
-    sSent = None
-
-
-
-
-
-#while sent1 is None and sent2 is None:
-while 1 == 2:
-    sent1 = getShortSentence(text_model,35)
-    sent2 = getShortSentence(text_model,35)
-
-    if doTheyRhyme(sent1,sent2):
-            print (sent1 + " " + sent2)
-    else:
-        print (".",end="",flush=True)
-        sent1 = None
-        sent2 = None
-
-
-
-
-
 
