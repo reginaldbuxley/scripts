@@ -31,7 +31,7 @@ def getShortSentence(text_model, length):
         
         if (sent is not None):
             rhymes = pronouncing.rhymes(getLastWord(sent))
-            if (len(rhymes) < 2):
+            if (len(rhymes) < 1):
                 sent = None
 
     return(sent)
