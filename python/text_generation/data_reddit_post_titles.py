@@ -5,7 +5,7 @@ from datetime import datetime
 r = praw.Reddit(user_agent='PythonApp')
 
 subreddit_ = 'showerthoughts'
-submissions = r.get_subreddit(subreddit_).get_top_from_all(limit=10)
+submissions = r.get_subreddit(subreddit_).get_top(limit=5000)
 text = ""
 counter = 1
 

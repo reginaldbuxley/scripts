@@ -14,15 +14,22 @@ print ("HERE WE GO!")
 
 home = expanduser("~")
 
-text1 = ""
+text = ""
 path1 = ""
+path2 = ""
+path3 = ""
+
 
 path1 = home + "/text_data/showerthoughts_titles.txt"
-text1 = text1 + talker.readFile(path1)    
+text = text + talker.readFile(path1)    
 
+path2 = home + "/text_data/textdata.txt"
+text = text + talker.readFile(path2)    
 
+path3 = home + "/text_data/gold.txt"
+text = text + talker.readFile(path3)    
 
-text_model = markovify.Text(text1, state_size=3)
+text_model = markovify.Text(text, state_size=2)
 sent1 = None 
 sent2 = None
 print ("-o^o-")
