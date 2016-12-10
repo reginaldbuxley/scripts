@@ -53,7 +53,7 @@ def getSuessSentence(text_model, length):
             #last_word = last_word.capitalize()
             rhymes = pronouncing.rhymes(last_word)
 
-            if len(rhymes) > 2 and rhymes is not None: 
+            if len(rhymes) > 3 and rhymes is not None: 
                 for rhyme in rhymes:
                     try:
                         x = str(rhyme).capitalize()
