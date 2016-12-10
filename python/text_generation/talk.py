@@ -1,3 +1,4 @@
+from os.path import expanduser
 import random
 import pronouncing
 import markovify
@@ -14,7 +15,7 @@ def doTheyRhyme(text1, text2):
         return False
 
 def getLastWord(text1):
-    return str.lower(re.sub('[^a-zA-Z0-9\n\.]', '', text1.rsplit(None, 1)[-1]))
+    return str.lower(re.sub('[^a-zA-Z0-9\n]', '', text1.rsplit(None, 1)[-1]))
     
 
 def readFile(path):
@@ -36,7 +37,7 @@ def getShortSentence(text_model, length):
 
     return(sent)
 
-def genSuessSentence(text_model):
+def getSuessSentence(text_model):
     print ("Into the Suess")
     #generate a sentence
     sent1 = None
@@ -73,36 +74,57 @@ def genSuessSentence(text_model):
 
 
     
-##########
+################
 print ("HERE WE GO!")
 
-text = ""
+home = expanduser("~")
+print (home)
 
-path = "c:/temp/markov_chain_data_lyrics.txt"
-text = text + readFile(path)    
+text1 = ""
+text2 = ""
+text3 = ""
 
-path = "c:/temp/tomsaw.txt"
-text = text + readFile(path)
+path1 = ""
+path2 = ""
+path3 = ""
 
-path = "c:/temp/huckfin.txt"
-text = text + readFile(path)
+path1 = home + "/text_data/oz.txt"
+text1 = text1 + readFile(path1)    
 
-text_model = markovify.Text(text,state_size=2)
+path2 = home + "/text_data/alice.txt"
+text2 = text2 + readFile(path2)
+
+path3 = home + "/text_data/threepigs.txt"
+text3 = text3 + readFile(path3)
+
+print (len(text1))
+print (len(text2))
+print (len(text3))
+
+text_model1 = markovify.Text(text1,state_size=3)
+text_model2 = markovify.Text(text2,state_size=3)
+text_model3 = markovify.Text(text3,state_size=3)
+
+
+
+text_model = markovify.combine([text_model1, text_model2, text_model3],[1,1,1])
 
 sent1 = None 
 sent2 = None
 print ("++")
 
-s_sent = genSuessSentence(text_model)
-print (s_sent)
+while sent1 is None and sent2 is None:
+    sent1 = getShortSentence(text_model,140)
+    sent2 = getShortSentence(text_model,140)
 
-#while (doTheyRhyme(sent1,sent2)) is True:        
-#    sent1 = getShortSentence(text_model, 80)
-#    for i in range(100):
-#        sent2 = getShortSentence(text_model, 80)
-#        if doTheyRhyme(sent1,sent2):
-#            print("-----")
-#            print(sent1)
-#            print(sent2)
+    if doTheyRhyme(sent1,sent2):
+            print (sent1 + " " + sent2)
+    else:
+        print ("nope :-(")
+        sent1 = None
+        sent2 = None
+
+
+
 
 
